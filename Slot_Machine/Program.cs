@@ -13,6 +13,7 @@ namespace Slot_Machine
             const char YES_CHAR = 'Y';
 
             int randomNumber = 0;
+            //test
 
             int[,] slotMachine2dArray = new int[SLOT_MACHINE_ROW_LENGTH, SLOT_MACHINE_COLUMN_LENGTH];
 
