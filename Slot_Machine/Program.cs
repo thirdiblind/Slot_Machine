@@ -44,7 +44,7 @@ namespace Slot_Machine
 
                     if (isWin)
                     {
-                        Console.WriteLine("You win! Line " + (row + 1);
+                        Console.WriteLine("You win! Line " + (row + 1));
                     }
                 }
 
