@@ -40,11 +40,16 @@ namespace Slot_Machine
                         if (slotMachine2dArray[row, col] != slotMachine2dArray[row, col + 1])
                         {
                             isWin = false;
+
                         }
 
                     if (isWin)
                     {
-                        Console.WriteLine("You win! Line " + (row + 1));
+                        Console.WriteLine("You win line " + (row + 1));
+                    }
+                    else
+                    {
+                        Console.WriteLine("You lose line " + (row + 1));
                     }
                 }
 
