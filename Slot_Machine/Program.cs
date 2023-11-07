@@ -9,7 +9,8 @@ namespace Slot_Machine
         {
             const int SLOT_MACHINE_LENGTH = 3;
             const int RANDOM_MAX = 9;
-            const int STARTING_BALANCE = 5;
+            const int STARTING_BALANCE = 25;
+            const int BET = 3;
             const char YES_CHAR = 'Y';
 
             int balance = STARTING_BALANCE;
@@ -21,7 +22,8 @@ namespace Slot_Machine
             bool gameActive = true;
             while (gameActive)
             {
-
+                Console.WriteLine("Your balance is: " + balance);
+                balance = balance - BET;
                 for (int row = 0; row < SLOT_MACHINE_LENGTH; row++)
                 {
                     for (int col = 0; col < SLOT_MACHINE_LENGTH; col++)
@@ -32,7 +34,7 @@ namespace Slot_Machine
                     }
                     Console.WriteLine();
                 }
-                Console.WriteLine("Your balance is: " + balance);
+                Console.WriteLine("Your balance after betting is: " + balance);
 
                 //Row win/lose
                 for (int row = 0; row < SLOT_MACHINE_LENGTH; row++)
@@ -54,7 +56,6 @@ namespace Slot_Machine
                     else
                     {
                         Console.WriteLine("You lose row " + (row + 1));
-                        balance--;
                     }
 
                 }
@@ -80,7 +81,6 @@ namespace Slot_Machine
                     else
                     {
                         Console.WriteLine("You lose column " + (col + 1));
-                        balance--;
                     }
 
                 }
@@ -95,7 +95,6 @@ namespace Slot_Machine
                         if (i < 1)
                         {
                             Console.WriteLine("You lose horizontal left to right");
-                            balance--;
                         }
                     }
                     bool isWinRL = true;
@@ -105,7 +104,6 @@ namespace Slot_Machine
                         if (i < 1)
                         {
                             Console.WriteLine("You lose horizontal right to left");
-                            balance--;
                         }
 
                     }
