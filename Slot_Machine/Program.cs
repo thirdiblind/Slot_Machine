@@ -9,8 +9,10 @@ namespace Slot_Machine
         {
             const int SLOT_MACHINE_LENGTH = 3;
             const int RANDOM_MAX = 9;
+            const int STARTING_BALANCE = 5;
             const char YES_CHAR = 'Y';
 
+            int balance = STARTING_BALANCE;
             int randomNumber = 0;
             //test
 
@@ -19,7 +21,7 @@ namespace Slot_Machine
             bool gameActive = true;
             while (gameActive)
             {
-                
+
                 for (int row = 0; row < SLOT_MACHINE_LENGTH; row++)
                 {
                     for (int col = 0; col < SLOT_MACHINE_LENGTH; col++)
@@ -30,6 +32,8 @@ namespace Slot_Machine
                     }
                     Console.WriteLine();
                 }
+                Console.WriteLine("Your balance is: " + balance);
+
                 //Row win/lose
                 for (int row = 0; row < SLOT_MACHINE_LENGTH; row++)
                 {
@@ -45,10 +49,12 @@ namespace Slot_Machine
                     if (isWin)
                     {
                         Console.WriteLine("You win row " + (row + 1));
+                        balance++;
                     }
                     else
                     {
                         Console.WriteLine("You lose row " + (row + 1));
+                        balance--;
                     }
 
                 }
@@ -69,10 +75,50 @@ namespace Slot_Machine
                     if (isWin)
                     {
                         Console.WriteLine("You win column " + (col + 1));
+                        balance++;
                     }
                     else
                     {
                         Console.WriteLine("You lose column " + (col + 1));
+                        balance--;
+                    }
+
+                }
+
+                //Diag win/lose
+                for (int i = 0; i < SLOT_MACHINE_LENGTH - 1; i++)
+                {
+                    bool isWinLR = true;
+                    if (slotMachine2dArray[i, i] != slotMachine2dArray[i + 1, i + 1])
+                    {
+                        isWinLR = false;
+                        if (i < 1)
+                        {
+                            Console.WriteLine("You lose horizontal left to right");
+                            balance--;
+                        }
+                    }
+                    bool isWinRL = true;
+                    if (slotMachine2dArray[i, SLOT_MACHINE_LENGTH - i - 1] != slotMachine2dArray[i + 1, SLOT_MACHINE_LENGTH - 2])
+                    {
+                        isWinRL = false;
+                        if (i < 1)
+                        {
+                            Console.WriteLine("You lose horizontal right to left");
+                            balance--;
+                        }
+
+                    }
+
+                    if (isWinLR)
+                    {
+                        Console.WriteLine("You win horizontally left to right");
+                        balance++;
+                    }
+                    if (isWinRL)
+                    {
+                        Console.WriteLine("You win horizontally right to left");
+                        balance++;
                     }
 
                 }
