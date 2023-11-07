@@ -28,7 +28,7 @@ namespace Slot_Machine
                 {
                     for (int col = 0; col < SLOT_MACHINE_LENGTH; col++)
                     {
-                        randomNumber = random.Next(0, RANDOM_MAX);
+                        randomNumber = random.Next(0, RANDOM_MAX + 1);
                         slotMachine2dArray[row, col] = randomNumber;
                         Console.Write(slotMachine2dArray[row, col] + " ");
                     }
