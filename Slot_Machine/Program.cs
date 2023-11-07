@@ -85,48 +85,50 @@ namespace Slot_Machine
 
                 }
 
-                //Diag win/lose
-                for (int i = 0; i < SLOT_MACHINE_LENGTH - 1; i++)
+            }
+
+            bool isWinRL = true;
+            bool isWinLR = true;
+
+            //Diag win/lose
+            for (int i = 0; i < SLOT_MACHINE_LENGTH - 1; i++)
+            {
+                if (slotMachine2dArray[i, i] != slotMachine2dArray[i + 1, i + 1])
                 {
-                    bool isWinLR = true;
-                    if (slotMachine2dArray[i, i] != slotMachine2dArray[i + 1, i + 1])
-                    {
-                        isWinLR = false;
-                        if (i < 1)
-                        {
-                            Console.WriteLine("You lose horizontal left to right");
-                        }
-                    }
-                    bool isWinRL = true;
-                    if (slotMachine2dArray[i, SLOT_MACHINE_LENGTH - i - 1] != slotMachine2dArray[i + 1, SLOT_MACHINE_LENGTH - 2])
-                    {
-                        isWinRL = false;
-                        if (i < 1)
-                        {
-                            Console.WriteLine("You lose horizontal right to left");
-                        }
-
-                    }
-
-                    if (isWinLR)
-                    {
-                        Console.WriteLine("You win horizontally left to right");
-                        balance++;
-                    }
-                    if (isWinRL)
-                    {
-                        Console.WriteLine("You win horizontally right to left");
-                        balance++;
-                    }
-
+                    isWinLR = false;
                 }
 
-
-                Console.WriteLine("Do you want to play again? Press Y or y");
-                char replay = char.ToUpper(Console.ReadKey().KeyChar);
-                gameActive = (replay == YES_CHAR);
-                Console.Clear();
+                if (slotMachine2dArray[i, SLOT_MACHINE_LENGTH - i - 1] != slotMachine2dArray[i + 1, SLOT_MACHINE_LENGTH - i - 2])
+                {
+                    isWinRL = false;
+                }
             }
+
+            if (isWinLR)
+            {
+                Console.WriteLine("You win horizontally left to right");
+                balance++;
+            }
+            else
+            {
+                Console.WriteLine("You lose horizontally left to right");
+            }
+
+            if (isWinRL)
+            {
+                Console.WriteLine("You win horizontally right to left");
+                balance++;
+            }
+            else
+            {
+                Console.WriteLine("You lose horizontally right to left");
+            }
+
+            Console.WriteLine("Do you want to play again? Press Y or y");
+            char replay = char.ToUpper(Console.ReadKey().KeyChar);
+            gameActive = (replay == YES_CHAR);
+            Console.Clear();
         }
     }
+}
 }
