@@ -148,22 +148,23 @@ namespace Slot_Machine
                     {
                         switch (bet)
                         {
-                            case 1:
-                                if (col == 1) //Center row
-                                {
-                                    Console.WriteLine("You win col " + (col + 1) + " +35 credits has been added to your balance!");
-                                    balance += 35;
-                                }
-                                break;
-                            case 2:
-                                if (col == 1 || col == 2) //Center and bottom rows
-                                {
-                                    Console.WriteLine("You win col " + (col + 1) + " +35 credits has been added to your balance!");
-                                    balance += 35;
-                                }
-                                break;
+                            // The commented code below does not apply as the user will not win any columns if they don't bet 3. This code was copied over from the row win logic and is N/A. 
+                            //case 1:
+                            //    if (col == 1) //Center row
+                            //    {
+                            //        Console.WriteLine("You win col " + (col + 1) + " +35 credits has been added to your balance!");
+                            //        balance += 35;
+                            //    }
+                            //    break;
+                            //case 2:
+                            //    if (col == 1 || col == 2) //Center and bottom rows
+                            //    {
+                            //        Console.WriteLine("You win col " + (col + 1) + " +35 credits has been added to your balance!");
+                            //        balance += 35;
+                            //    }
+                            //    break;
                             case 3:
-                                if (col == 1 || col == 2 || col == 3) //All 3 horizontal rows
+                                if (col == 1 || col == 2 || col == 3) //All 3 vertical columens
                                 {
                                     Console.WriteLine("You win col " + (col + 1) + " +35 credits has been added to your balance!");
                                     balance += 35;
