@@ -33,7 +33,7 @@ namespace Slot_Machine
                 bet = lastBet; // Start with the last bet
                 Console.WriteLine($"Current bet: {bet} credits");
 
-                while(true) 
+                while (true)
                 {
                     ConsoleKeyInfo keyInfo = Console.ReadKey(true);
 
@@ -59,7 +59,7 @@ namespace Slot_Machine
                 }
 
                 lastBet = bet; // Store bet for next round
-                Console.WriteLine($"You have bet {bet} credits.");  
+                Console.WriteLine($"You have bet {bet} credits.");
 
                 balance = balance - bet;
                 Console.WriteLine();
@@ -82,7 +82,7 @@ namespace Slot_Machine
                     Console.WriteLine();
                     if (row < SLOT_MACHINE_LENGTH - 1)
                     {
-                    Console.WriteLine();
+                        Console.WriteLine();
                     }
                 }
                 Console.WriteLine("---------------");
@@ -104,14 +104,31 @@ namespace Slot_Machine
                     }
                     if (isWin)
                     {
-                        Console.WriteLine("You win row " + (row + 1) + " +35 credits has been added to your balance!");
-                        balance += 35;
+                        switch (bet)
+                        {
+                            case 1:
+                                if (row == 1) //Center row
+                                {
+                                    Console.WriteLine("You win row " + (row + 1) + " +35 credits has been added to your balance!");
+                                    balance += 35;
+                                }
+                                break;
+                            case 2:
+                                if (row == 1 || row == 2) //Center and bottom rows
+                                {
+                                    Console.WriteLine("You win row " + (row + 1) + " +35 credits has been added to your balance!");
+                                    balance += 35;
+                                }
+                                break;
+                            case 3:
+                                if (row == 1 || row == 2 || row == 3) //All 3 horizontal rows
+                                {
+                                    Console.WriteLine("You win row " + (row + 1) + " +35 credits has been added to your balance!");
+                                    balance += 35;
+                                }
+                                break;
+                        }
                     }
-                    else
-                    {
-                        //Console.WriteLine("You lose row " + (row + 1));
-                    }
-
                 }
 
                 //Column win/lose
@@ -129,12 +146,30 @@ namespace Slot_Machine
                     }
                     if (isWin)
                     {
-                        Console.WriteLine("You win column " + (col + 1) + " +35 credits has been added to your balance!");
-                        balance += 35;
-                    }
-                    else
-                    {
-                        //Console.WriteLine("You lose column " + (col + 1));
+                        switch (bet)
+                        {
+                            case 1:
+                                if (col == 1) //Center row
+                                {
+                                    Console.WriteLine("You win col " + (col + 1) + " +35 credits has been added to your balance!");
+                                    balance += 35;
+                                }
+                                break;
+                            case 2:
+                                if (col == 1 || col == 2) //Center and bottom rows
+                                {
+                                    Console.WriteLine("You win col " + (col + 1) + " +35 credits has been added to your balance!");
+                                    balance += 35;
+                                }
+                                break;
+                            case 3:
+                                if (col == 1 || col == 2 || col == 3) //All 3 horizontal rows
+                                {
+                                    Console.WriteLine("You win col " + (col + 1) + " +35 credits has been added to your balance!");
+                                    balance += 35;
+                                }
+                                break;
+                        }
                     }
 
                 }
@@ -155,25 +190,18 @@ namespace Slot_Machine
                         isWinRL = false;
                     }
                 }
-
-                if (isWinLR)
+                if (bet == 3)
                 {
-                    Console.WriteLine("You win horizontally left to right. +35 credits has been added to your balance!");
-                    balance += 35;
-                }
-                else
-                {
-                    //Console.WriteLine("You lose horizontally left to right");
-                }
-
-                if (isWinRL)
-                {
-                    Console.WriteLine("You win horizontally right to left. +35 credits has been added to your balance!");
-                    balance += 35;
-                }
-                else
-                {
-                    //Console.WriteLine("You lose horizontally right to left");
+                    if (isWinLR)
+                    {
+                        Console.WriteLine("You win horizontally left to right. +35 credits has been added to your balance!");
+                        balance += 35;
+                    }
+                    if (isWinRL)
+                    {
+                        Console.WriteLine("You win horizontally right to left. +35 credits has been added to your balance!");
+                        balance += 35;
+                    }
                 }
 
                 Console.WriteLine("Do you want to play again? Press Y or y");
