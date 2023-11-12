@@ -12,7 +12,8 @@ namespace Slot_Machine
             const int RANDOM_MAX = 9;
             const int STARTING_BALANCE = 25;
             //deprecated code: const int BET = 3;
-            const char YES_CHAR = 'Y';
+            //deprecated code: const char YES_CHAR = 'Y';
+            const ConsoleKey PLAY_AGAIN_KEY = ConsoleKey.Enter;
 
             int bet = 1; //default bet
             int lastBet = bet;
@@ -205,9 +206,9 @@ namespace Slot_Machine
                     }
                 }
 
-                Console.WriteLine("Do you want to play again? Press Y or y");
-                char replay = char.ToUpper(Console.ReadKey().KeyChar);
-                gameActive = (replay == YES_CHAR);
+                Console.WriteLine("Do you want to play again? Press Enter");
+                ConsoleKeyInfo replay = Console.ReadKey();
+                gameActive = (replay.Key == PLAY_AGAIN_KEY);
                 Console.Clear();
             }
         }
