@@ -62,16 +62,32 @@ namespace Slot_Machine
                 Console.WriteLine($"You have bet {bet} credits.");  
 
                 balance = balance - bet;
+                Console.WriteLine();
+                Console.WriteLine("---------------");
                 for (int row = 0; row < SLOT_MACHINE_LENGTH; row++)
                 {
+                    Console.Write("|- ");
                     for (int col = 0; col < SLOT_MACHINE_LENGTH; col++)
                     {
                         randomNumber = random.Next(0, RANDOM_MAX + 1);
                         slotMachine2dArray[row, col] = randomNumber;
-                        Console.Write(slotMachine2dArray[row, col] + " ");
+                        Console.Write(slotMachine2dArray[row, col] + " -");
+                        if (col < 2)
+                        {
+                            Console.Write(" ");
+                        }
+
                     }
+                    Console.Write("|");
                     Console.WriteLine();
+                    if (row < SLOT_MACHINE_LENGTH - 1)
+                    {
+                    Console.WriteLine();
+                    }
                 }
+                Console.WriteLine("---------------");
+                Console.WriteLine();
+
                 Console.WriteLine("Your balance after betting is: " + balance);
 
                 //Row win/lose
