@@ -109,7 +109,7 @@ namespace Slot_Machine
                     }
                     else
                     {
-                        Console.WriteLine("You lose row " + (row + 1));
+                        //Console.WriteLine("You lose row " + (row + 1));
                     }
 
                 }
@@ -134,7 +134,7 @@ namespace Slot_Machine
                     }
                     else
                     {
-                        Console.WriteLine("You lose column " + (col + 1));
+                        //Console.WriteLine("You lose column " + (col + 1));
                     }
 
                 }
@@ -163,7 +163,7 @@ namespace Slot_Machine
                 }
                 else
                 {
-                    Console.WriteLine("You lose horizontally left to right");
+                    //Console.WriteLine("You lose horizontally left to right");
                 }
 
                 if (isWinRL)
@@ -173,7 +173,7 @@ namespace Slot_Machine
                 }
                 else
                 {
-                    Console.WriteLine("You lose horizontally right to left");
+                    //Console.WriteLine("You lose horizontally right to left");
                 }
 
                 Console.WriteLine("Do you want to play again? Press Y or y");
