@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection.Metadata;
 
 namespace Slot_Machine
 {
@@ -10,20 +11,57 @@ namespace Slot_Machine
             const int SLOT_MACHINE_LENGTH = 3;
             const int RANDOM_MAX = 9;
             const int STARTING_BALANCE = 25;
-            const int BET = 3;
+            //deprecated code: const int BET = 3;
             const char YES_CHAR = 'Y';
 
+            int bet = 1; //default bet
+            int lastBet = bet;
             int balance = STARTING_BALANCE;
             int randomNumber = 0;
-            //test
 
             int[,] slotMachine2dArray = new int[SLOT_MACHINE_LENGTH, SLOT_MACHINE_LENGTH];
 
             bool gameActive = true;
             while (gameActive)
             {
-                Console.WriteLine("Your balance is: " + balance);
-                balance = balance - BET;
+                Console.WriteLine($"Your balance is: {balance}");
+
+                Console.WriteLine("Use the up/down arrows to select the amount to bet. Press enter to confirm.");
+
+                int cursorTopPosition = Console.CursorTop; // Remember the cursor position
+
+                bet = lastBet; // Start with the last bet
+                Console.WriteLine($"Current bet: {bet} credits");
+
+                while(true) 
+                {
+                    ConsoleKeyInfo keyInfo = Console.ReadKey(true);
+
+                    if (keyInfo.Key == ConsoleKey.UpArrow) //Cycle up 1,2,3 -> 1
+                    {
+                        bet = bet % 3 + 1;
+                    }
+                    else if (keyInfo.Key == ConsoleKey.DownArrow) //Cycle down 1 -> 3,2,1
+                    {
+                        bet = (bet == 1) ? 3 : bet - 1;
+                    }
+                    else if (keyInfo.Key == ConsoleKey.Enter)
+                    {
+                        Console.WriteLine(); // Move to the next line after confirming the bet
+                        break;
+                    }
+
+                    // Update the current line with the new bet
+                    Console.SetCursorPosition(0, cursorTopPosition);
+                    Console.Write($"Current bet: {bet} credits");
+                    Console.Write(new string(' ', Console.WindowWidth - Console.CursorLeft)); // Clear the rest of the line
+
+                }
+
+                lastBet = bet; // Store bet for next round
+                Console.WriteLine($"You have bet {bet} credits.");  
+
+                balance = balance - bet;
                 for (int row = 0; row < SLOT_MACHINE_LENGTH; row++)
                 {
                     for (int col = 0; col < SLOT_MACHINE_LENGTH; col++)
@@ -50,8 +88,8 @@ namespace Slot_Machine
                     }
                     if (isWin)
                     {
-                        Console.WriteLine("You win row " + (row + 1));
-                        balance++;
+                        Console.WriteLine("You win row " + (row + 1) + " +35 credits has been added to your balance!");
+                        balance += 35;
                     }
                     else
                     {
@@ -75,8 +113,8 @@ namespace Slot_Machine
                     }
                     if (isWin)
                     {
-                        Console.WriteLine("You win column " + (col + 1));
-                        balance++;
+                        Console.WriteLine("You win column " + (col + 1) + " +35 credits has been added to your balance!");
+                        balance += 35;
                     }
                     else
                     {
@@ -84,7 +122,6 @@ namespace Slot_Machine
                     }
 
                 }
-
 
                 bool isWinRL = true;
                 bool isWinLR = true;
@@ -105,8 +142,8 @@ namespace Slot_Machine
 
                 if (isWinLR)
                 {
-                    Console.WriteLine("You win horizontally left to right");
-                    balance++;
+                    Console.WriteLine("You win horizontally left to right. +35 credits has been added to your balance!");
+                    balance += 35;
                 }
                 else
                 {
@@ -115,8 +152,8 @@ namespace Slot_Machine
 
                 if (isWinRL)
                 {
-                    Console.WriteLine("You win horizontally right to left");
-                    balance++;
+                    Console.WriteLine("You win horizontally right to left. +35 credits has been added to your balance!");
+                    balance += 35;
                 }
                 else
                 {
