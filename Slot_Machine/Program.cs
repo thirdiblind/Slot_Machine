@@ -107,7 +107,7 @@ namespace Slot_Machine
                         switch (bet)
                         {
                             case 1:
-                                if (row == 1) //Center row
+                                if (row == 2) //Center row
                                 {
                                     Console.WriteLine("You win row " + (row + 1) + " +35 credits has been added to your balance!");
                                     balance += 35;
