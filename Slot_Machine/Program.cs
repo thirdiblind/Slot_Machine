@@ -11,12 +11,9 @@
             const int MIN_BET = 1;
             const int MAX_BET = 3;
             const int WIN_AMOUNT = 35;
-            const int BOTTOM_ROW = 1;
+            const int TOP_ROW = 1;
             const int CENTER_ROW = 2;
-            const int TOP_ROW = 3;
-            //const int LEFT_COL = 1;
-            //const int MIDDLE_COL = 2;
-            //const int RIGHT_COL = 3;
+            const int BOTTOM_ROW = 3;
             const ConsoleKey PLAY_AGAIN_KEY = ConsoleKey.Enter;
 
             int bet = 1; //default bet
