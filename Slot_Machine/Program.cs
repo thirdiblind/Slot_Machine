@@ -11,6 +11,9 @@ namespace Slot_Machine
             const int SLOT_MACHINE_LENGTH = 3;
             const int RANDOM_MAX = 9;
             const int STARTING_BALANCE = 25;
+            const int MIN_BET = 1;
+            const int MIDDLE_BET = 2;
+            const int MAX_BET = 3;   
             //deprecated code: const int BET = 3;
             //deprecated code: const char YES_CHAR = 'Y';
             const ConsoleKey PLAY_AGAIN_KEY = ConsoleKey.Enter;
@@ -40,11 +43,11 @@ namespace Slot_Machine
 
                     if (keyInfo.Key == ConsoleKey.UpArrow) //Cycle up 1,2,3 -> 1
                     {
-                        bet = bet % 3 + 1;
+                        bet = bet %  + 1;
                     }
                     else if (keyInfo.Key == ConsoleKey.DownArrow) //Cycle down 1 -> 3,2,1
                     {
-                        bet = (bet == 1) ? 3 : bet - 1;
+                        bet = (bet == MIN_BET) ? MAX_BET : bet - 1;
                     }
                     else if (keyInfo.Key == ConsoleKey.Enter)
                     {
