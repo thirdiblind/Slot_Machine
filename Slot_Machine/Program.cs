@@ -174,7 +174,7 @@
                             case 3:
                                 if (col == 1 || col == 2 || col == 3) //All 3 vertical columens
                                 {
-                                    Console.WriteLine($"You win column {(col + 1)} +WIN_AMOUNT credits has been added to your balance!");
+                                    Console.WriteLine($"You win column {(col + 1)} +{WIN_AMOUNT} credits has been added to your balance!");
                                     balance += WIN_AMOUNT;
                                 }
                                 break;
