@@ -29,9 +29,14 @@
             bool gameActive = true;
             while (gameActive)
             {
+                Console.WriteLine("Welcome to Anub's Slot Machine. Below are instructions on how to play...\n");
+                Console.WriteLine("A bet of 1 checks the center row for a win.");
+                Console.WriteLine("A bet of 2 checks the center and bottom row for a win.");
+                Console.WriteLine("A bet of 3 checks all rows, columns and both diagonals (left to right and right to left).");
+                Console.WriteLine("You must place a max bet (3) to win all lines.\n");
                 Console.WriteLine($"Your balance is: {balance}");
-
-                Console.WriteLine("Use the up/down arrows to select the amount to bet. Press enter to confirm.");
+                Console.WriteLine("Use the up/down arrows to select the amount to bet. Press enter to confirm.\n");
+  
 
                 int cursorTopPosition = Console.CursorTop; // Remember the cursor position
 
@@ -44,7 +49,7 @@
 
                     if (keyInfo.Key == ConsoleKey.UpArrow) // Cycle up bet: 1,2,3 -> 1,2,3
                     {
-                        bet = bet %  + 1;
+                        bet = bet % MAX_BET + 1;
                     }
                     else if (keyInfo.Key == ConsoleKey.DownArrow) // Cycle down bet: 1 -> 3,2,1 -> 3,2,1
                     {
