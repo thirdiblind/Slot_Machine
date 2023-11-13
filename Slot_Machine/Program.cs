@@ -11,6 +11,12 @@
             const int MIN_BET = 1;
             const int MAX_BET = 3;
             const int WIN_AMOUNT = 35;
+            const int BOTTOM_ROW = 1;
+            const int CENTER_ROW = 2;
+            const int TOP_ROW = 3;
+            //const int LEFT_COL = 1;
+            //const int MIDDLE_COL = 2;
+            //const int RIGHT_COL = 3;
             const ConsoleKey PLAY_AGAIN_KEY = ConsoleKey.Enter;
 
             int bet = 1; //default bet
@@ -106,23 +112,23 @@
                         switch (bet)
                         {
                             case 1:
-                                if (row == 2) //Center horizontal row
+                                if (row == CENTER_ROW) //Center horizontal row
                                 {
-                                    Console.WriteLine($"You win row {(row + 1)} +WIN_AMOUNT credits has been added to your balance!");
+                                    Console.WriteLine($"You win the center row! +{WIN_AMOUNT} credits has been added to your balance!");
                                     balance += WIN_AMOUNT;
                                 }
                                 break;
                             case 2:
-                                if (row == 1 || row == 2) //Center and bottom horizontal rows
+                                if (row == BOTTOM_ROW || row == CENTER_ROW) //Center and bottom horizontal rows
                                 {
-                                    Console.WriteLine($"You win row {(row + 1)} +WIN_AMOUNT credits has been added to your balance!");
+                                    Console.WriteLine($"You win the bottom row! +{WIN_AMOUNT} credits has been added to your balance!");
                                     balance += WIN_AMOUNT;
                                 }
                                 break;
                             case 3:
-                                if (row == 1 || row == 2 || row == 3) //All 3 horizontal rows
+                                if (row == BOTTOM_ROW || row == CENTER_ROW || row == TOP_ROW) //All 3 horizontal rows
                                 {
-                                    Console.WriteLine($"You win row {(row + 1)} +WIN_AMOUNT credits has been added to your balance!");
+                                    Console.WriteLine($"You win the top row! +{WIN_AMOUNT} credits has been added to your balance!");
                                     balance += WIN_AMOUNT;
                                 }
                                 break;
@@ -166,7 +172,7 @@
                             case 3:
                                 if (col == 1 || col == 2 || col == 3) //All 3 vertical columens
                                 {
-                                    Console.WriteLine($"You win col {(col + 1)} +WIN_AMOUNT credits has been added to your balance!");
+                                    Console.WriteLine($"You win column {(col + 1)} +WIN_AMOUNT credits has been added to your balance!");
                                     balance += WIN_AMOUNT;
                                 }
                                 break;
