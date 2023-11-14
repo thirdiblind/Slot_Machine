@@ -1,4 +1,6 @@
-﻿namespace Slot_Machine
+﻿using System.Diagnostics;
+
+namespace Slot_Machine
 {
     internal class Program
     {
@@ -23,13 +25,15 @@
 
             int[,] slotMachine2dArray = new int[SLOT_MACHINE_LENGTH, SLOT_MACHINE_LENGTH];
 
+            Console.WriteLine("Welcome to Anub's Slot Machine. Below are instructions on how to play...\n");
+            Console.WriteLine("A bet of 1 checks the center row for a win.");
+            Console.WriteLine("A bet of 2 checks the center and bottom row for a win.");
+            Console.WriteLine("A bet of 3 checks all rows, columns and both diagonals (left to right and right to left).");
+
             bool gameActive = true;
             while (gameActive)
             {
-                Console.WriteLine("Welcome to Anub's Slot Machine. Below are instructions on how to play...\n");
-                Console.WriteLine("A bet of 1 checks the center row for a win.");
-                Console.WriteLine("A bet of 2 checks the center and bottom row for a win.");
-                Console.WriteLine("A bet of 3 checks all rows, columns and both diagonals (left to right and right to left).");
+
                 Console.WriteLine("You must place a max bet (3) to win all lines.\n");
                 Console.WriteLine($"Your balance is: {balance}");
                 Console.WriteLine("Use the up/down arrows to select the amount to bet. Press enter to confirm.\n");
@@ -38,7 +42,8 @@
                 int cursorTopPosition = Console.CursorTop; // Remember the cursor position
 
                 bet = lastBet; // Start with the last bet
-                Console.WriteLine($"Current bet: {bet} credits");
+                Console.WriteLine($"What would you like to bet: {bet} credits\n");
+                Console.WriteLine("Press Enter to play!");
 
                 while (true)
                 {
