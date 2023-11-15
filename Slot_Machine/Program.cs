@@ -25,25 +25,26 @@ namespace Slot_Machine
 
             int[,] slotMachine2dArray = new int[SLOT_MACHINE_LENGTH, SLOT_MACHINE_LENGTH];
 
-            Console.WriteLine("Welcome to Anub's Slot Machine. Below are instructions on how to play...\n");
-            Console.WriteLine("A bet of 1 checks the center row for a win.");
-            Console.WriteLine("A bet of 2 checks the center and bottom row for a win.");
-            Console.WriteLine("A bet of 3 checks all rows, columns and both diagonals (left to right and right to left).");
+            Console.WriteLine("Welcome to Anub's Slot Machine. Below are instructions on how to play...");
+            Console.WriteLine("-----------------------------------------------------------------------------");
+            Console.WriteLine("This is a 3x3 slot machine where 3 matches numbers in a line win.");
+            Console.WriteLine(" - Bet 1 checks the center row for a win.");
+            Console.WriteLine(" - Bet of 2 checks the center and bottom row for a win.");
+            Console.WriteLine(" - Bet of 3 checks all rows, columns and both diagonals for a win.");
 
             bool gameActive = true;
             while (gameActive)
             {
-
-                Console.WriteLine("You must place a max bet (3) to win all lines.\n");
+                Console.WriteLine("-----------------------------------------------------------------------------");
                 Console.WriteLine($"Your balance is: {balance}");
+                Console.WriteLine("-----------------------------------------------------------------------------");
+                Console.WriteLine("You must place a max bet (3) to win all lines.");
                 Console.WriteLine("Use the up/down arrows to select the amount to bet. Press enter to confirm.\n");
-  
 
                 int cursorTopPosition = Console.CursorTop; // Remember the cursor position
 
                 bet = lastBet; // Start with the last bet
-                Console.WriteLine($"What would you like to bet: {bet} credits\n");
-                Console.WriteLine("Press Enter to play!");
+
 
                 while (true)
                 {
@@ -67,7 +68,7 @@ namespace Slot_Machine
                     Console.SetCursorPosition(0, cursorTopPosition);
                     Console.Write($"Current bet: {bet} credits");
                     Console.Write(new string(' ', Console.WindowWidth - Console.CursorLeft)); // Clear the rest of the line
-
+                    Console.WriteLine("Press Enter to play!");
                 }
 
                 lastBet = bet; // Store bet for next round
@@ -158,71 +159,51 @@ namespace Slot_Machine
                     }
                     if (isWin)
                     {
-                        switch (bet)
+                        if (col == 1 || col == 2 || col == 3) //All 3 vertical columens
                         {
-                            // The commented code below does not apply as the user will not win any vertical columns if they
-                            // don't use MAX_BET which is 3. This code was copied over from the row win logic and is N/A here. 
-                            //case 1:
-                            //    if (col == 1) //Center row
-                            //    {
-                            //        Console.WriteLine("You win col " + (col + 1) + " +WIN_AMOUNT credits has been added to your balance!");
-                            //        balance += WIN_AMOUNT;
-                            //    }
-                            //    break;
-                            //case 2:
-                            //    if (col == 1 || col == 2) //Center and bottom rows
-                            //    {
-                            //        Console.WriteLine("You win col " + (col + 1) + " +WIN_AMOUNT credits has been added to your balance!");
-                            //        balance += WIN_AMOUNT;
-                            //    }
-                            //    break;
-                            case 3:
-                                if (col == 1 || col == 2 || col == 3) //All 3 vertical columens
-                                {
-                                    Console.WriteLine($"You win column {(col + 1)} +{WIN_AMOUNT} credits has been added to your balance!");
-                                    balance += WIN_AMOUNT;
-                                }
-                                break;
+                            Console.WriteLine($"You win column {(col + 1)} +{WIN_AMOUNT} credits has been added to your balance!");
+                            balance += WIN_AMOUNT;
                         }
-                    }
-
-                }
-
-                bool isWinRL = true;
-                bool isWinLR = true;
-
-                // Diagonal win/lose
-                for (int i = 0; i < SLOT_MACHINE_LENGTH - 1; i++)
-                {
-                    if (slotMachine2dArray[i, i] != slotMachine2dArray[i + 1, i + 1])
-                    {
-                        isWinLR = false;
-                    }
-
-                    if (slotMachine2dArray[i, SLOT_MACHINE_LENGTH - i - 1] != slotMachine2dArray[i + 1, SLOT_MACHINE_LENGTH - i - 2])
-                    {
-                        isWinRL = false;
-                    }
-                }
-                if (bet == 3)
-                {
-                    if (isWinLR)
-                    {
-                        Console.WriteLine($"You win diagonally, from left to right. +{WIN_AMOUNT} credits has been added to your balance!");
-                        balance += WIN_AMOUNT;
-                    }
-                    if (isWinRL)
-                    {
-                        Console.WriteLine($"You win diagonally, from right to left. +{WIN_AMOUNT} credits has been added to your balance!");
-                        balance += WIN_AMOUNT;
+                        break;
                     }
                 }
 
-                Console.WriteLine("Do you want to play again? Press Enter");
-                ConsoleKeyInfo replay = Console.ReadKey();
-                gameActive = (replay.Key == PLAY_AGAIN_KEY);
-                Console.Clear();
             }
+
+            bool isWinRL = true;
+            bool isWinLR = true;
+
+            // Diagonal win/lose
+            for (int i = 0; i < SLOT_MACHINE_LENGTH - 1; i++)
+            {
+                if (slotMachine2dArray[i, i] != slotMachine2dArray[i + 1, i + 1])
+                {
+                    isWinLR = false;
+                }
+
+                if (slotMachine2dArray[i, SLOT_MACHINE_LENGTH - i - 1] != slotMachine2dArray[i + 1, SLOT_MACHINE_LENGTH - i - 2])
+                {
+                    isWinRL = false;
+                }
+            }
+            if (bet == 3)
+            {
+                if (isWinLR)
+                {
+                    Console.WriteLine($"You win diagonally, from left to right. +{WIN_AMOUNT} credits has been added to your balance!");
+                    balance += WIN_AMOUNT;
+                }
+                if (isWinRL)
+                {
+                    Console.WriteLine($"You win diagonally, from right to left. +{WIN_AMOUNT} credits has been added to your balance!");
+                    balance += WIN_AMOUNT;
+                }
+            }
+
+            Console.WriteLine("Do you want to play again? Press Enter");
+            ConsoleKeyInfo replay = Console.ReadKey();
+            gameActive = (replay.Key == PLAY_AGAIN_KEY);
+            Console.Clear();
         }
     }
 }
