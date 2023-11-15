@@ -9,7 +9,7 @@ namespace Slot_Machine
         {
             const int SLOT_MACHINE_LENGTH = 3;
             const int RANDOM_MAX = 9;
-            const int STARTING_BALANCE = 25;
+            const int STARTING_BALANCE = 100;
             const int MIN_BET = 1;
             const int MAX_BET = 3;
             const int WIN_AMOUNT = 35;
