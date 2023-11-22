@@ -105,6 +105,7 @@ namespace Slot_Machine
                 Console.WriteLine($"Your balance after betting is: {balance}");
 
 
+                //Center row win logic - bet 1
                 int centerRow = 1;
                 bool isWin = true;
 
@@ -125,7 +126,7 @@ namespace Slot_Machine
                 }
 
 
-                //Row win/lose
+                //Row win logic - bet 2
                 for (int row = 0; row < SLOT_MACHINE_LENGTH; row++)
                 {
                     isWin = true;
@@ -148,7 +149,7 @@ namespace Slot_Machine
                     }
                 }
 
-                //Column win/lose
+                //Column win logic - bet 3
                 for (int col = 0; col < SLOT_MACHINE_LENGTH; col++)
                 {
                     isWin = true;
@@ -177,7 +178,7 @@ namespace Slot_Machine
             bool isWinRL = true;
             bool isWinLR = true;
 
-            // Diagonal win/lose
+            // Diagonal win logic - bet 4
             for (int i = 0; i < SLOT_MACHINE_LENGTH - 1; i++)
             {
                 if (slotMachine2dArray[i, i] != slotMachine2dArray[i + 1, i + 1])
