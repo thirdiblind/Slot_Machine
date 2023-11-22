@@ -104,10 +104,29 @@ namespace Slot_Machine
                 Console.WriteLine($"Your balance after betting is: {balance}");
 
 
+                int centerRow = 1; 
+                bool isWin = true;
+
+                for (int col = 0 ; col < SLOT_MACHINE_LENGTH -1; col++)
+                {
+                    if (slotMachine2dArray[centerRow, col] != slotMachine2dArray[centerRow, col + 1]);
+                    {
+                        isWin = false;
+                        break;
+                    }
+                }
+
+                if (isWin)
+                {
+                    Console.WriteLine($"You win the center row +{WIN_AMOUNT} credits has been added to your balance!");
+                }
+
+
+
                 //Row win/lose
                 for (int row = 0; row < SLOT_MACHINE_LENGTH; row++)
                 {
-                    bool isWin = true;
+                    isWin = true;
 
                     for (int col = 0; col < SLOT_MACHINE_LENGTH - 1; col++)
                     {
@@ -125,7 +144,7 @@ namespace Slot_Machine
                 //Column win/lose
                 for (int col = 0; col < SLOT_MACHINE_LENGTH; col++)
                 {
-                    bool isWin = true;
+                    isWin = true;
 
                     for (int row = 0; row < SLOT_MACHINE_LENGTH - 1; row++)
                     {
