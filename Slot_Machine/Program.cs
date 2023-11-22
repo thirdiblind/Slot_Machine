@@ -103,6 +103,7 @@ namespace Slot_Machine
 
                 Console.WriteLine($"Your balance after betting is: {balance}");
 
+
                 //Row win/lose
                 for (int row = 0; row < SLOT_MACHINE_LENGTH; row++)
                 {
@@ -117,30 +118,7 @@ namespace Slot_Machine
                     }
                     if (isWin)
                     {
-                        switch (bet)
-                        {
-                            case 1:
-                                if (row == CENTER_ROW) //Center horizontal row
-                                {
-                                    Console.WriteLine($"You win the center row! +{WIN_AMOUNT} credits has been added to your balance!");
-                                    balance += WIN_AMOUNT;
-                                }
-                                break;
-                            case 2:
-                                if (row == BOTTOM_ROW || row == CENTER_ROW) //Center and bottom horizontal rows
-                                {
-                                    Console.WriteLine($"You win the bottom row! +{WIN_AMOUNT} credits has been added to your balance!");
-                                    balance += WIN_AMOUNT;
-                                }
-                                break;
-                            case 3:
-                                if (row == BOTTOM_ROW || row == CENTER_ROW || row == TOP_ROW) //All 3 horizontal rows
-                                {
-                                    Console.WriteLine($"You win the top row! +{WIN_AMOUNT} credits has been added to your balance!");
-                                    balance += WIN_AMOUNT;
-                                }
-                                break;
-                        }
+                    Console.WriteLine($"You win row {(row + 1)} +{WIN_AMOUNT} credits has been added to your balance!");
                     }
                 }
 
