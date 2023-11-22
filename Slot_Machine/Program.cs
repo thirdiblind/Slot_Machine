@@ -133,11 +133,13 @@ namespace Slot_Machine
                         if (slotMachine2dArray[row, col] != slotMachine2dArray[row, col + 1])
                         {
                             isWin = false;
+
                         }
                     }
                     if (isWin)
                     {
                     Console.WriteLine($"You win row {(row + 1)} +{WIN_AMOUNT} credits has been added to your balance!");
+                    balance += WIN_AMOUNT;
                     }
                 }
 
@@ -156,11 +158,8 @@ namespace Slot_Machine
                     }
                     if (isWin)
                     {
-                        if (col == 1 || col == 2 || col == 3) //All 3 vertical columens
-                        {
                             Console.WriteLine($"You win column {(col + 1)} +{WIN_AMOUNT} credits has been added to your balance!");
                             balance += WIN_AMOUNT;
-                        }
                         break;
                     }
                 }
