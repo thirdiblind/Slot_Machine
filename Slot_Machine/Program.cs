@@ -11,7 +11,7 @@ namespace Slot_Machine
             const int RANDOM_MAX = 9;
             const int STARTING_BALANCE = 100;
             const int MIN_BET = 1;
-            const int MAX_BET = 3;
+            const int MAX_BET = 4;
             const int WIN_AMOUNT = 35;
             const int TOP_ROW = 1;
             const int CENTER_ROW = 2;
@@ -29,8 +29,9 @@ namespace Slot_Machine
             Console.WriteLine("-----------------------------------------------------------------------------");
             Console.WriteLine("This is a 3x3 slot machine where 3 matches numbers in a line win.");
             Console.WriteLine(" - Bet 1 checks the center row for a win.");
-            Console.WriteLine(" - Bet of 2 checks the center and bottom row for a win.");
-            Console.WriteLine(" - Bet of 3 checks all rows, columns and both diagonals for a win.");
+            Console.WriteLine(" - Bet 2 checks rows for a win.");
+            Console.WriteLine(" - Bet 3 checks columns for a win.");
+            Console.WriteLine(" - Bet 4 checks diagonals for a win.");
 
             bool gameActive = true;
             while (gameActive)
@@ -104,23 +105,24 @@ namespace Slot_Machine
                 Console.WriteLine($"Your balance after betting is: {balance}");
 
 
-                int centerRow = 1; 
+                int centerRow = 1;
                 bool isWin = true;
 
-                for (int col = 0 ; col < SLOT_MACHINE_LENGTH -1; col++)
+                for (int col = 0; col < SLOT_MACHINE_LENGTH - 1; col++)
                 {
-                    if (slotMachine2dArray[centerRow, col] != slotMachine2dArray[centerRow, col + 1]);
+                    if (slotMachine2dArray[centerRow, col] != slotMachine2dArray[centerRow, col + 1]) ;
                     {
                         isWin = false;
                         break;
                     }
                 }
-
-                if (isWin)
+                if (bet == 1)
                 {
-                    Console.WriteLine($"You win the center row +{WIN_AMOUNT} credits has been added to your balance!");
+                    if (isWin)
+                    {
+                        Console.WriteLine($"You win the center row +{WIN_AMOUNT} credits has been added to your balance!");
+                    }
                 }
-
 
 
                 //Row win/lose
@@ -136,10 +138,13 @@ namespace Slot_Machine
 
                         }
                     }
-                    if (isWin)
+                    if (bet == 2)
                     {
-                    Console.WriteLine($"You win row {(row + 1)} +{WIN_AMOUNT} credits has been added to your balance!");
-                    balance += WIN_AMOUNT;
+                        if (isWin)
+                        {
+                            Console.WriteLine($"You win row {(row + 1)} +{WIN_AMOUNT} credits has been added to your balance!");
+                            balance += WIN_AMOUNT;
+                        }
                     }
                 }
 
@@ -156,11 +161,14 @@ namespace Slot_Machine
 
                         }
                     }
-                    if (isWin)
+                    if (bet == 3)
                     {
+                        if (isWin)
+                        {
                             Console.WriteLine($"You win column {(col + 1)} +{WIN_AMOUNT} credits has been added to your balance!");
                             balance += WIN_AMOUNT;
-                        break;
+                            break;
+                        }
                     }
                 }
 
@@ -182,7 +190,7 @@ namespace Slot_Machine
                     isWinRL = false;
                 }
             }
-            if (bet == 3)
+            if (bet == 4)
             {
                 if (isWinLR)
                 {
