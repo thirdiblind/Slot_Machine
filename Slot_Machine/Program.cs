@@ -12,6 +12,8 @@ namespace Slot_Machine
             const int RANDOM_MAX = 9;
             const int STARTING_BALANCE = 100;
             const int MIN_BET = 1;
+            const int BET_TWO = 2;
+            const int BET_THREE = 3;
             const int MAX_BET = 4;
             const int WIN_AMOUNT = 35;
             const ConsoleKey PLAY_AGAIN_KEY = ConsoleKey.Enter;
@@ -26,10 +28,10 @@ namespace Slot_Machine
             Console.WriteLine("Welcome to Anub's Slot Machine. Below are instructions on how to play...");
             Console.WriteLine("-----------------------------------------------------------------------------");
             Console.WriteLine("This is a 3x3 slot machine where 3 matches numbers in a line win.");
-            Console.WriteLine(" - Bet 1 checks the center row for a win.");
-            Console.WriteLine(" - Bet 2 checks rows for a win.");
-            Console.WriteLine(" - Bet 3 checks columns for a win.");
-            Console.WriteLine(" - Bet 4 checks diagonals for a win.");
+            Console.WriteLine($" - Bet {MIN_BET} checks the center row for a win.");
+            Console.WriteLine($" - Bet {BET_TWO} checks rows for a win.");
+            Console.WriteLine($" - Bet {BET_THREE} checks columns for a win.");
+            Console.WriteLine($" - Bet {MAX_BET} checks diagonals for a win.");
 
             bool gameActive = true;
             while (gameActive)
@@ -37,7 +39,6 @@ namespace Slot_Machine
                 Console.WriteLine("-----------------------------------------------------------------------------");
                 Console.WriteLine($"Your balance is: {balance}");
                 Console.WriteLine("-----------------------------------------------------------------------------");
-                Console.WriteLine("You must place a max bet (3) to win all lines.");
                 Console.WriteLine("Use the up/down arrows to select the amount to bet. Press enter to confirm.\n");
 
                 int cursorTopPosition = Console.CursorTop; // Remember the cursor position
@@ -114,7 +115,7 @@ namespace Slot_Machine
                         break;
                     }
                 }
-                if (bet == 1)
+                if (bet == MIN_BET)
                 {
                     if (isWin)
                     {
@@ -136,7 +137,7 @@ namespace Slot_Machine
 
                         }
                     }
-                    if (bet == 2)
+                    if (bet == BET_TWO)
                     {
                         if (isWin)
                         {
@@ -159,7 +160,7 @@ namespace Slot_Machine
 
                         }
                     }
-                    if (bet == 3)
+                    if (bet == BET_THREE)
                     {
                         if (isWin)
                         {
@@ -188,7 +189,7 @@ namespace Slot_Machine
                     isWinRL = false;
                 }
             }
-            if (bet == 4)
+            if (bet == MAX_BET)
             {
                 if (isWinLR)
                 {
