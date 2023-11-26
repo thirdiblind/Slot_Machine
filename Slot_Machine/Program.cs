@@ -103,20 +103,19 @@ namespace Slot_Machine
 
                 Console.WriteLine($"Your balance after betting is: {balance}");
 
-
-                //Center row win logic - bet 1
                 bool isWin = true;
-
-                for (int col = 0; col < SLOT_MACHINE_LENGTH - 1; col++)
-                {
-                    if (slotMachine2dArray[CENTER_ROW, col] != slotMachine2dArray[CENTER_ROW, col + 1]) ;
-                    {
-                        isWin = false;
-                        break;
-                    }
-                }
+                //Center row win logic - bet 1
                 if (bet == MIN_BET)
                 {
+                    for (int col = 0; col < SLOT_MACHINE_LENGTH - 1; col++)
+                    {
+                        if (slotMachine2dArray[CENTER_ROW, col] != slotMachine2dArray[CENTER_ROW, col + 1]) ;
+                        {
+                            isWin = false;
+                            break;
+                        }
+                    }
+
                     if (isWin)
                     {
                         Console.WriteLine($"You win the center row +{WIN_AMOUNT} credits has been added to your balance!");
@@ -125,20 +124,21 @@ namespace Slot_Machine
 
 
                 //Row win logic - bet 2
-                for (int row = 0; row < SLOT_MACHINE_LENGTH; row++)
+                if (bet == BET_TWO)
                 {
-                    isWin = true;
-
-                    for (int col = 0; col < SLOT_MACHINE_LENGTH - 1; col++)
+                    for (int row = 0; row < SLOT_MACHINE_LENGTH; row++)
                     {
-                        if (slotMachine2dArray[row, col] != slotMachine2dArray[row, col + 1])
+                        isWin = true;
+
+                        for (int col = 0; col < SLOT_MACHINE_LENGTH - 1; col++)
                         {
-                            isWin = false;
+                            if (slotMachine2dArray[row, col] != slotMachine2dArray[row, col + 1])
+                            {
+                                isWin = false;
 
+                            }
                         }
-                    }
-                    if (bet == BET_TWO)
-                    {
+
                         if (isWin)
                         {
                             Console.WriteLine($"You win row {(row + 1)} +{WIN_AMOUNT} credits has been added to your balance!");
@@ -148,20 +148,21 @@ namespace Slot_Machine
                 }
 
                 //Column win logic - bet 3
-                for (int col = 0; col < SLOT_MACHINE_LENGTH; col++)
+                if (bet == BET_THREE)
                 {
-                    isWin = true;
-
-                    for (int row = 0; row < SLOT_MACHINE_LENGTH - 1; row++)
+                    for (int col = 0; col < SLOT_MACHINE_LENGTH; col++)
                     {
-                        if (slotMachine2dArray[row, col] != slotMachine2dArray[row + 1, col])
+                        isWin = true;
+
+                        for (int row = 0; row < SLOT_MACHINE_LENGTH - 1; row++)
                         {
-                            isWin = false;
+                            if (slotMachine2dArray[row, col] != slotMachine2dArray[row + 1, col])
+                            {
+                                isWin = false;
 
+                            }
                         }
-                    }
-                    if (bet == BET_THREE)
-                    {
+
                         if (isWin)
                         {
                             Console.WriteLine($"You win column {(col + 1)} +{WIN_AMOUNT} credits has been added to your balance!");
@@ -177,20 +178,21 @@ namespace Slot_Machine
             bool isWinLR = true;
 
             // Diagonal win logic - bet 4
-            for (int i = 0; i < SLOT_MACHINE_LENGTH - 1; i++)
-            {
-                if (slotMachine2dArray[i, i] != slotMachine2dArray[i + 1, i + 1])
-                {
-                    isWinLR = false;
-                }
-
-                if (slotMachine2dArray[i, SLOT_MACHINE_LENGTH - i - 1] != slotMachine2dArray[i + 1, SLOT_MACHINE_LENGTH - i - 2])
-                {
-                    isWinRL = false;
-                }
-            }
             if (bet == MAX_BET)
             {
+                for (int i = 0; i < SLOT_MACHINE_LENGTH - 1; i++)
+                {
+                    if (slotMachine2dArray[i, i] != slotMachine2dArray[i + 1, i + 1])
+                    {
+                        isWinLR = false;
+                    }
+
+                    if (slotMachine2dArray[i, SLOT_MACHINE_LENGTH - i - 1] != slotMachine2dArray[i + 1, SLOT_MACHINE_LENGTH - i - 2])
+                    {
+                        isWinRL = false;
+                    }
+                }
+
                 if (isWinLR)
                 {
                     Console.WriteLine($"You win diagonally, from left to right. +{WIN_AMOUNT} credits has been added to your balance!");
