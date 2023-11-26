@@ -8,14 +8,12 @@ namespace Slot_Machine
         static void Main(string[] args)
         {
             const int SLOT_MACHINE_LENGTH = 3;
+            const int CENTER_ROW = (SLOT_MACHINE_LENGTH - 1) / 2;
             const int RANDOM_MAX = 9;
             const int STARTING_BALANCE = 100;
             const int MIN_BET = 1;
             const int MAX_BET = 4;
             const int WIN_AMOUNT = 35;
-            const int TOP_ROW = 1;
-            const int CENTER_ROW = 2;
-            const int BOTTOM_ROW = 3;
             const ConsoleKey PLAY_AGAIN_KEY = ConsoleKey.Enter;
 
             int bet = 1; //default bet
@@ -106,12 +104,11 @@ namespace Slot_Machine
 
 
                 //Center row win logic - bet 1
-                int centerRow = 1;
                 bool isWin = true;
 
                 for (int col = 0; col < SLOT_MACHINE_LENGTH - 1; col++)
                 {
-                    if (slotMachine2dArray[centerRow, col] != slotMachine2dArray[centerRow, col + 1]) ;
+                    if (slotMachine2dArray[CENTER_ROW, col] != slotMachine2dArray[CENTER_ROW, col + 1]) ;
                     {
                         isWin = false;
                         break;
