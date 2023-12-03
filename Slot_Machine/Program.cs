@@ -19,29 +19,25 @@ namespace Slot_Machine
             const int WIN_AMOUNT = 35;
             const ConsoleKey PLAY_AGAIN_KEY = ConsoleKey.Enter;
 
-            int bet = 1; //default bet
+            int bet = 1;
             int balance = STARTING_BALANCE;
             int randomNumber = 0;
 
             int[,] slotMachine2dArray = new int[SLOT_MACHINE_LENGTH, SLOT_MACHINE_LENGTH];
 
-            Console.WriteLine("Welcome to Anub's Slot Machine. Below are instructions on how to play...");
-            Console.WriteLine("-----------------------------------------------------------------------------");
-            Console.WriteLine("This is a 3x3 slot machine where 3 matches numbers in a line win.");
-            Console.WriteLine($" - Bet {MIN_BET} checks the center row for a win.");
-            Console.WriteLine($" - Bet {BET_TWO} checks rows for a win.");
-            Console.WriteLine($" - Bet {BET_THREE} checks columns for a win.");
-            Console.WriteLine($" - Bet {MAX_BET} checks diagonals for a win.");
-
             bool gameActive = true;
             while (gameActive)
             {
+                Console.WriteLine("Welcome to Anub's Slot Machine. Below are instructions on how to play...");
+                Console.WriteLine("-----------------------------------------------------------------------------");
+                Console.WriteLine("This is a 3x3 slot machine where 3 matches numbers in a line win.");
+                Console.WriteLine($" - Bet {MIN_BET} checks the center row for a win.");
+                Console.WriteLine($" - Bet {BET_TWO} checks rows for a win.");
+                Console.WriteLine($" - Bet {BET_THREE} checks columns for a win.");
+                Console.WriteLine($" - Bet {MAX_BET} checks diagonals for a win.");
                 Console.WriteLine("-----------------------------------------------------------------------------");
                 Console.WriteLine($"Your balance is: {balance}");
                 Console.WriteLine("-----------------------------------------------------------------------------");
-
-
-                int cursorTopPosition = Console.CursorTop; // Remember the cursor position
 
                 while (true)
                 {
