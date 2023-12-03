@@ -19,7 +19,7 @@ namespace Slot_Machine
             const int WIN_AMOUNT = 35;
             const ConsoleKey PLAY_AGAIN_KEY = ConsoleKey.Enter;
 
-            int bet = 1;
+            int bet = 1; //default bet
             int balance = STARTING_BALANCE;
             int randomNumber = 0;
 
@@ -39,14 +39,24 @@ namespace Slot_Machine
                 Console.WriteLine($"Your balance is: {balance}");
                 Console.WriteLine("-----------------------------------------------------------------------------");
 
+
+                int cursorTopPosition = Console.CursorTop; // Remember the cursor position
+
                 while (true)
                 {
                     Console.Write("Enter your bet: 1,2,3 or 4: ");
                     string input = Console.ReadLine();
                     if (int.TryParse(input, out int result) && result > 0 && result < 5)
                     {
-                        bet = result;
-                        break;
+                        if (bet <= balance)
+                        {
+                            bet = result;
+                            break;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Insufficient balance for this bet.");
+                        }
                     }
                     else
                     {
