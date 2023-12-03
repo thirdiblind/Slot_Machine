@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System.ComponentModel.Design;
+using System.Diagnostics;
 
 namespace Slot_Machine
 {
@@ -19,7 +20,6 @@ namespace Slot_Machine
             const ConsoleKey PLAY_AGAIN_KEY = ConsoleKey.Enter;
 
             int bet = 1; //default bet
-            int lastBet = bet;
             int balance = STARTING_BALANCE;
             int randomNumber = 0;
 
@@ -39,39 +39,26 @@ namespace Slot_Machine
                 Console.WriteLine("-----------------------------------------------------------------------------");
                 Console.WriteLine($"Your balance is: {balance}");
                 Console.WriteLine("-----------------------------------------------------------------------------");
-                Console.WriteLine("Use the up/down arrows to select the amount to bet. Press enter to confirm.\n");
+
 
                 int cursorTopPosition = Console.CursorTop; // Remember the cursor position
 
-                bet = lastBet; // Start with the last bet
-
-
                 while (true)
                 {
-                    ConsoleKeyInfo keyInfo = Console.ReadKey(true);
-
-                    if (keyInfo.Key == ConsoleKey.UpArrow) // Cycle up bet: 1,2,3 -> 1,2,3
+                    Console.Write("Enter your bet: 1,2,3 or 4: ");
+                    string input = Console.ReadLine();
+                    if (int.TryParse(input, out int result) && result > 0 && result < 5)
                     {
-                        bet = bet % MAX_BET + 1;
-                    }
-                    else if (keyInfo.Key == ConsoleKey.DownArrow) // Cycle down bet: 1 -> 3,2,1 -> 3,2,1
-                    {
-                        bet = (bet == MIN_BET) ? MAX_BET : bet - 1;
-                    }
-                    else if (keyInfo.Key == ConsoleKey.Enter) // When user presses Enter 
-                    {
-                        Console.WriteLine(); // Move to the next line after confirming the bet
+                        bet = result;
                         break;
                     }
+                    else
+                    {
+                        Console.WriteLine("Invalid input. Please enter a number between 1 and 4");
+                    }
 
-                    // Update the current line with the new bet
-                    Console.SetCursorPosition(0, cursorTopPosition);
-                    Console.Write($"Current bet: {bet} credits");
-                    Console.Write(new string(' ', Console.WindowWidth - Console.CursorLeft)); // Clear the rest of the line
-                    Console.WriteLine("Press Enter to play!");
                 }
-
-                lastBet = bet; // Store bet for next round
+                
                 Console.WriteLine($"You have bet {bet} credits.");
 
                 balance = balance - bet;
@@ -104,6 +91,7 @@ namespace Slot_Machine
                 Console.WriteLine($"Your balance after betting is: {balance}");
 
                 bool isWin = true;
+
                 //Center row win logic - bet 1
                 if (bet == MIN_BET)
                 {
@@ -172,43 +160,42 @@ namespace Slot_Machine
                     }
                 }
 
-            }
+                bool isWinRL = true;
+                bool isWinLR = true;
 
-            bool isWinRL = true;
-            bool isWinLR = true;
-
-            // Diagonal win logic - bet 4
-            if (bet == MAX_BET)
-            {
-                for (int i = 0; i < SLOT_MACHINE_LENGTH - 1; i++)
+                // Diagonal win logic - bet 4
+                if (bet == MAX_BET)
                 {
-                    if (slotMachine2dArray[i, i] != slotMachine2dArray[i + 1, i + 1])
+                    for (int i = 0; i < SLOT_MACHINE_LENGTH - 1; i++)
                     {
-                        isWinLR = false;
+                        if (slotMachine2dArray[i, i] != slotMachine2dArray[i + 1, i + 1])
+                        {
+                            isWinLR = false;
+                        }
+
+                        if (slotMachine2dArray[i, SLOT_MACHINE_LENGTH - i - 1] != slotMachine2dArray[i + 1, SLOT_MACHINE_LENGTH - i - 2])
+                        {
+                            isWinRL = false;
+                        }
                     }
 
-                    if (slotMachine2dArray[i, SLOT_MACHINE_LENGTH - i - 1] != slotMachine2dArray[i + 1, SLOT_MACHINE_LENGTH - i - 2])
+                    if (isWinLR)
                     {
-                        isWinRL = false;
+                        Console.WriteLine($"You win diagonally, from left to right. +{WIN_AMOUNT} credits has been added to your balance!");
+                        balance += WIN_AMOUNT;
+                    }
+                    if (isWinRL)
+                    {
+                        Console.WriteLine($"You win diagonally, from right to left. +{WIN_AMOUNT} credits has been added to your balance!");
+                        balance += WIN_AMOUNT;
                     }
                 }
 
-                if (isWinLR)
-                {
-                    Console.WriteLine($"You win diagonally, from left to right. +{WIN_AMOUNT} credits has been added to your balance!");
-                    balance += WIN_AMOUNT;
-                }
-                if (isWinRL)
-                {
-                    Console.WriteLine($"You win diagonally, from right to left. +{WIN_AMOUNT} credits has been added to your balance!");
-                    balance += WIN_AMOUNT;
-                }
+                Console.WriteLine("Do you want to play again? Press Enter");
+                ConsoleKeyInfo replay = Console.ReadKey();
+                gameActive = (replay.Key == PLAY_AGAIN_KEY);
+                Console.Clear();
             }
-
-            Console.WriteLine("Do you want to play again? Press Enter");
-            ConsoleKeyInfo replay = Console.ReadKey();
-            gameActive = (replay.Key == PLAY_AGAIN_KEY);
-            Console.Clear();
         }
     }
 }
