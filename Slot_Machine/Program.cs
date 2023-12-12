@@ -39,9 +39,6 @@ namespace Slot_Machine
                 Console.WriteLine($"Your balance is: {balance}");
                 Console.WriteLine("-----------------------------------------------------------------------------");
 
-
-                int cursorTopPosition = Console.CursorTop; // Remember the cursor position
-
                 while (true)
                 {
                     Console.Write("Enter your bet: 1,2,3 or 4: ");
