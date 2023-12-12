@@ -8,6 +8,7 @@ namespace Slot_Machine
 
         static void Main(string[] args)
         {
+			GameUI ui = new GameUI();
             const int SLOT_MACHINE_LENGTH = 3;
             const int CENTER_ROW = (SLOT_MACHINE_LENGTH - 1) / 2;
             const int RANDOM_MAX = 9;
@@ -28,17 +29,8 @@ namespace Slot_Machine
             bool gameActive = true;
             while (gameActive)
             {
-                Console.WriteLine("Welcome to Anub's Slot Machine. Below are instructions on how to play...");
-                Console.WriteLine("-----------------------------------------------------------------------------");
-                Console.WriteLine("This is a 3x3 slot machine where 3 matches numbers in a line win.");
-                Console.WriteLine($" - Bet {MIN_BET} checks the center row for a win.");
-                Console.WriteLine($" - Bet {BET_TWO} checks rows for a win.");
-                Console.WriteLine($" - Bet {BET_THREE} checks columns for a win.");
-                Console.WriteLine($" - Bet {MAX_BET} checks diagonals for a win.");
-                Console.WriteLine("-----------------------------------------------------------------------------");
-                Console.WriteLine($"Your balance is: {balance}");
-                Console.WriteLine("-----------------------------------------------------------------------------");
-
+				ui.DisplayGameInstructions(balance);
+                
                 while (true)
                 {
                     Console.Write("Enter your bet: 1,2,3 or 4: ");
@@ -201,4 +193,20 @@ namespace Slot_Machine
             }
         }
     }
+	public class GameUI
+	{
+		public void DisplayGameInstructions(int balance)
+		{
+		Console.WriteLine("Welcome to Anub's Slot Machine. Below are instructions on how to play...");
+        Console.WriteLine("-----------------------------------------------------------------------------");
+        Console.WriteLine("This is a 3x3 slot machine where 3 matches numbers in a line win.");
+        Console.WriteLine($" - Bet 1 checks the center row for a win.");
+		Console.WriteLine($" - Bet 2 checks rows for a win.");
+		Console.WriteLine($" - Bet 3 checks columns for a win.");
+		Console.WriteLine($" - Bet 4 checks diagonals for a win.");
+		Console.WriteLine("-----------------------------------------------------------------------------");
+		Console.WriteLine($"Your balance is: {balance}");
+		Console.WriteLine("-----------------------------------------------------------------------------");
+		}
+	}
 }
