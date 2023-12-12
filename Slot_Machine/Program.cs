@@ -1,11 +1,11 @@
-﻿using System.ComponentModel.Design;
-using System.Diagnostics;
+﻿using System;
 
 namespace Slot_Machine
 {
     internal class Program
     {
         public static readonly Random random = new Random();
+
         static void Main(string[] args)
         {
             const int SLOT_MACHINE_LENGTH = 3;
