@@ -74,7 +74,7 @@ namespace Slot_Machine
                 {
                     for (int col = 0; col < SLOT_MACHINE_LENGTH - 1; col++)
                     {
-                        if (slotMachine2dArray[CENTER_ROW, col] != slotMachine2dArray[CENTER_ROW, col + 1]) ;
+                        if (slotMachine2dArray[CENTER_ROW, col] != slotMachine2dArray[CENTER_ROW, col + 1])
                         {
                             isWin = false;
                             break;
@@ -175,40 +175,5 @@ namespace Slot_Machine
             }
         }
     }
-	public class GameUI
-	{
-		public void DisplayGameInstructions(int balance)
-		{
-		Console.WriteLine("Welcome to Anub's Slot Machine. Below are instructions on how to play...");
-        Console.WriteLine("-----------------------------------------------------------------------------");
-        Console.WriteLine("This is a 3x3 slot machine where 3 matches numbers in a line win.");
-        Console.WriteLine($" - Bet 1 checks the center row for a win.");
-		Console.WriteLine($" - Bet 2 checks rows for a win.");
-		Console.WriteLine($" - Bet 3 checks columns for a win.");
-		Console.WriteLine($" - Bet 4 checks diagonals for a win.");
-		Console.WriteLine("-----------------------------------------------------------------------------");
-		Console.WriteLine($"Your balance is: {balance}");
-		Console.WriteLine("-----------------------------------------------------------------------------");
-		}
-	}
-	public class GameLogic
-	{
-		public static int selectBet(string prompt, int balance)
-		{
-			while (true) // Loop infinitely until a break or return. Used to continuously prompt for input until a valid integar is entered.
-       		{
-			Console.WriteLine(prompt);
-			string input = Console.ReadLine();
-			if(int.TryParse(input, out int bet) && bet > 0 && bet < 5)
-			{
-			   if (bet <= balance)
-			   {
-				   return bet;
-			   }
-			}
-			Console.WriteLine("Invalid Input. Please enter a valid bet, from 1-4.");
-			}
-		}
-	}
 }
-}
+
